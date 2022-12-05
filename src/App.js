@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from 'react';
+
+import createScene from './scene';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const canvas = canvasRef.current
+      
+      createScene(canvas)
+    }
+  }, [])
+
+  return <canvas ref={canvasRef}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+        </canvas>
 }
 
 export default App;
